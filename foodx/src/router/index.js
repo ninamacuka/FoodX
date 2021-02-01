@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
-
+import store from '@/store';
 const routes = [
   {
     path: '/',
@@ -27,5 +27,13 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
+router.beforeEach((to, from, next) => {
+  console.log('Bio sam na', from.name, 'idem na', to.name, 'a korisnik je', store.currentUser);
+  const authenticated = store.currentUser !== null;
+  if (!authenticated && to.meta.needsAuth) {
+  next('login');
+  } else {
+  next();
+  }
+ });
 export default router
