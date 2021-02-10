@@ -9,7 +9,15 @@
           <router-link to="/register" class="nav-link">Sign up</router-link>
         </li>
         <li v-if="store.currentUser" class="nav-item">
+          <router-link to="/Recepti" class="nav-link">Recepti</router-link>
+        </li>
+        <li v-if="store.currentUser" class="nav-item">
           <a href="#" @click.prevent="logout()" class="nav-link">Logout</a>
+        </li>
+        <li v-if="store.currentUser" class="nav-item">
+          <router-link to="/noviRecept" class="nav-link"
+            >Dodaj recept</router-link
+          >
         </li>
       </ul>
     </div>
@@ -25,14 +33,11 @@
   text-align: center;
   color: #2c3e50;
 }
-
 #nav {
   padding: 30px;
-
   a {
     font-weight: bold;
     color: #2c3e50;
-
     &.router-link-exact-active {
       color: #42b983;
     }
@@ -64,14 +69,12 @@ firebase.auth().onAuthStateChanged((user) => {
     }
   }
 });
-
 export default {
   data() {
     return {
       store,
     };
   },
-
   methods: {
     logout: function () {
       firebase
