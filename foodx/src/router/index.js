@@ -33,7 +33,18 @@ const routes = [
   {
     path: '/recept/:id',
     name: 'Recept',
-    component: () => import(/* webpackChunkName: "login" */ '../views/Recept.vue')
+    component: () => import(/* webpackChunkName: "login" */ '../views/Recept.vue'),
+    meta:{
+      needsAuth:true
+    }  
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import(/* webpackChunkName: "login" */ '../views/Admin.vue'),
+    meta:{
+      needsAuth:true
+    }  
   },
 ]
 
