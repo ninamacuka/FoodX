@@ -29,7 +29,12 @@ const routes = [
     path: '/Recepti',
     name: 'Recepti',
     component: () => import(/* webpackChunkName: "L" */ '../views/Recepti.vue')
-  }
+  },
+  {
+    path: '/recept/:id',
+    name: 'Recept',
+    component: () => import(/* webpackChunkName: "login" */ '../views/Recept.vue')
+  },
 ]
 
 const router = new VueRouter({

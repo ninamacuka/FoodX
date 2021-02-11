@@ -12,6 +12,9 @@
           <router-link to="/Recepti" class="nav-link">Recepti</router-link>
         </li>
         <li v-if="store.currentUser" class="nav-item">
+          <router-link to="/" class="nav-link">Home</router-link>
+        </li>
+        <li v-if="store.currentUser" class="nav-item">
           <a href="#" @click.prevent="logout()" class="nav-link">Logout</a>
         </li>
         <li v-if="store.currentUser" class="nav-item">
