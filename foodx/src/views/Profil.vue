@@ -24,6 +24,12 @@
         </div>
         <button type="submit" class="btn btn-primary ml-2">Izmjeni</button>
       </form>
+      Recepti koje prati:
+      <div v-for="recept in praceno" v-bind:key="recept.id" class="col-3">
+        <router-link v-bind:to="'/recept/' + recept.id">{{
+          recept.naziv
+        }}</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -37,6 +43,7 @@ export default {
     return {
       store,
       profil: {},
+      praceno: [],
       ime: "",
       prezime: "",
     };
@@ -68,9 +75,28 @@ export default {
           });
       }
     },
+    getRecept() {
+      if (store.currentUser !== null) {
+        db.collection("pero@net.rh")
+          .get()
+          .then((result) => {
+            result.forEach((doc) => {
+              let data = doc.data();
+              console.log(data);
+              let card = {
+                id: data.id,
+                naziv: data.naziv,
+              };
+              this.praceno.push(card);
+            });
+            console.log(this.praceno);
+          });
+      }
+    },
   },
   mounted() {
     this.getProfil();
+    this.getRecept();
   },
 };
 </script>
