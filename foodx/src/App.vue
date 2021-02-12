@@ -18,6 +18,12 @@
           <router-link to="/admin" class="nav-link">Admin</router-link>
         </li>
         <li v-if="store.currentUser" class="nav-item">
+          <router-link
+            :to="{ name: 'Profil', params: { email: store.currentUser } }"
+            >Profil</router-link
+          >
+        </li>
+        <li v-if="store.currentUser" class="nav-item">
           <a href="#" @click.prevent="logout()" class="nav-link">Logout</a>
         </li>
         <li v-if="store.currentUser" class="nav-item">

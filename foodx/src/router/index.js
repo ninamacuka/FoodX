@@ -46,6 +46,14 @@ const routes = [
       needsAuth:true
     }  
   },
+  {
+    path: '/profil/:email',
+    name: 'Profil',
+    component: () => import(/* webpackChunkName: "login" */ '../views/Profil.vue'),
+    meta:{
+      needsAuth:true
+    }  
+  },
 ]
 
 const router = new VueRouter({
