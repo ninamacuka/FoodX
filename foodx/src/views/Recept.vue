@@ -1,26 +1,21 @@
 <template>
-  <div class="container">
+  <div class="container mt-4">
     <div class="row">
-      <div class="col-3">
-        <div class="card m-1">
-          <img class="card-img-top" src="" style="width: 100%" alt="" />
-          <div class="card-body">
-            <h5 class="card-title">{{ Recepti.naziv }}</h5>
-            <h5
+      <div class="m-auto">
+        <div class="card mb-5" style="width: 50rem">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ Recepti.naziv }}</li>
+            <li class="list-group-item bg-primary">Sastojci:</li>
+            <li
               v-for="sastojak in Recepti.sastojci"
               v-bind:key="sastojak.id"
-              class="card-title"
+              class="list-group-item border-0"
             >
-              {{ sastojak.sastojak }} :
-              {{ sastojak.kolicina }}
-            </h5>
-            <button
-              class="btn btn-danger float-right"
-              @click="onDelete(Recepti.id)"
-            >
-              X
-            </button>
-          </div>
+              {{ sastojak.sastojak }} : {{ sastojak.kolicina }}
+            </li>
+            <li class="list-group-item bg-success">Priprema:</li>
+            <li class="list-group-item">{{ Recepti.priprema }}</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -42,7 +37,6 @@ export default {
   },
   methods: {
     getRecepti() {
-      let Recepti = [];
       db.collection("Recepti")
         .doc(this.id)
         .get()
@@ -53,6 +47,7 @@ export default {
             naziv: data.naziv,
             time: data.posted_at,
             sastojci: data.sastojci,
+            priprema: data.priprema,
           };
           console.log(card);
           this.Recepti = card;
