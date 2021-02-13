@@ -1,38 +1,42 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <ul class="navbar-nav ml-auto">
-        <li v-if="!store.currentUser" class="nav-item">
-          <router-link to="/login" class="nav-link">Login</router-link>
-        </li>
-        <li v-if="!store.currentUser" class="nav-item">
-          <router-link to="/register" class="nav-link">Sign up</router-link>
-        </li>
-        <li v-if="store.currentUser" class="nav-item">
-          <router-link to="/Recepti" class="nav-link">Recepti</router-link>
-        </li>
-        <li v-if="store.currentUser" class="nav-item">
-          <router-link to="/" class="nav-link">Home</router-link>
-        </li>
-        <li v-if="store.currentUser == 'admin@unipu.hr'" class="nav-item">
-          <router-link to="/admin" class="nav-link">Admin</router-link>
-        </li>
-        <li v-if="store.currentUser" class="nav-item">
-          <router-link
-            :to="{ name: 'Profil', params: { email: store.currentUser } }"
-            >Profil</router-link
-          >
-        </li>
-        <li v-if="store.currentUser" class="nav-item">
-          <a href="#" @click.prevent="logout()" class="nav-link">Logout</a>
-        </li>
-        <li v-if="store.currentUser" class="nav-item">
-          <router-link to="/noviRecept" class="nav-link"
-            >Dodaj recept</router-link
-          >
-        </li>
-      </ul>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img alt="Vue logo" :src="logo" style="height: 50%; width: 50%" />
+      </a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li v-if="!store.currentUser" class="nav-item">
+            <router-link to="/login" class="nav-link">Login</router-link>
+          </li>
+          <li v-if="!store.currentUser" class="nav-item">
+            <router-link to="/register" class="nav-link">Sign up</router-link>
+          </li>
+          <li v-if="store.currentUser" class="nav-item">
+            <router-link to="/noviRecept" class="nav-link"
+              >Dodaj recept</router-link
+            >
+          </li>
+          <li v-if="store.currentUser" class="nav-item">
+            <router-link to="/Recepti" class="nav-link">Recepti</router-link>
+          </li>
+          <li v-if="store.currentUser == 'admin@unipu.hr'" class="nav-item">
+            <router-link to="/admin" class="nav-link">Admin</router-link>
+          </li>
+          <li v-if="store.currentUser" class="nav-item">
+            <router-link
+              class="nav-link"
+              :to="{ name: 'Profil', params: { email: store.currentUser } }"
+              >Profil</router-link
+            >
+          </li>
+          <li v-if="store.currentUser" class="nav-item">
+            <a href="" @click.prevent="logout()" class="nav-link">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <router-view />
   </div>
 </template>
@@ -61,6 +65,7 @@
 import { firebase } from "@/firebase";
 import store from "@/store.js";
 import router from "@/router";
+import logo from "@/assets/logo.png";
 firebase.auth().onAuthStateChanged((user) => {
   const currentRoute = router.currentRoute;
   if (user) {
@@ -85,6 +90,7 @@ export default {
   data() {
     return {
       store,
+      logo,
     };
   },
   methods: {
