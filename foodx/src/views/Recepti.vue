@@ -89,10 +89,7 @@ export default {
   computed: {
     search: function () {
       return this.Recepti.filter((item) => {
-        return (
-          item.naziv.toLowerCase().match(this.trazi.toLowerCase()) ||
-          item.sastojci.sastojak.toLowerCase().match(this.trazi.toLowerCase())
-        );
+        return item.naziv.toLowerCase().match(this.trazi.toLowerCase());
       });
     },
   },
