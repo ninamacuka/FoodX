@@ -1,21 +1,15 @@
 <template>
-  <div class="container">
+  <div class="container mt-4">
     <div class="row">
       <div v-for="recept in Recepti" v-bind:key="recept.id" class="col-3">
         <div class="card m-1">
           <img class="card-img-top" src="" style="width: 100%" alt="" />
           <div class="card-body">
-            <h5 class="card-title">{{ recept.email }}</h5>
-            <h5 class="card-title">{{ recept.naziv }}</h5>
-            <h5
-              v-for="sastojak in recept.sastojci"
-              v-bind:key="sastojak.id"
-              class="card-title"
-            >
-              {{ sastojak.sastojak }} :
-              {{ sastojak.kolicina }}
-            </h5>
-            <router-link v-bind:to="'/recept/' + recept.id"
+            <h5 class="card-title">Korisnik: {{ recept.email }}</h5>
+            <h5 class="card-title">Naziv: {{ recept.naziv }}</h5>
+            <router-link
+              v-bind:to="'/recept/' + recept.id"
+              class="btn btn-success"
               >Pregledaj</router-link
             >
             <button

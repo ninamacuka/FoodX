@@ -23,7 +23,11 @@ const routes = [
   {
     path: '/NoviRecept',
     name: 'NoviRecept',
-    component: () => import(/* webpackChunkName: "L" */ '../views/NoviRecept.vue')
+    component: () => import(/* webpackChunkName: "L" */ '../views/NoviRecept.vue'),
+    meta:{
+      needsAuth:true
+    }  
+    
   },
   {
     path: '/Recepti',
