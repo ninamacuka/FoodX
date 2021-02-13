@@ -1,59 +1,72 @@
 <template>
-  <div class="row">
-    <div class="col-8">
-      <form @submit.prevent="NoviRecept" class="form-inline mb-5">
-        <div class="form-group">
-          <label for="naziv">Naziv</label>
-          <input
-            v-model="naziv"
-            type="text"
-            class="form-control ml-2"
-            placeholder="Naziv"
-            id="naziv"
-          />
+  <div class="noviRecept">
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+          <form @submit.prevent="NoviRecept" class="mb-5">
+            <div class="form-group mb-3">
+              <label for="naziv">Naziv</label>
+              <input
+                v-model="naziv"
+                type="text"
+                class="form-control"
+                placeholder="Naziv"
+                id="naziv"
+              />
+            </div>
+            <div
+              class="form-group"
+              v-for="(sastojak, index) in sastojci"
+              :key="index"
+            >
+              <div class="form-group text-danger">
+                <label>Sastojak: </label>
+                <input
+                  v-model="sastojci[index].sastojak"
+                  :name="`sastojci[${index}][sastojak]`"
+                  type="text"
+                  class="form-control"
+                  placeholder="Sastojak"
+                />
+              </div>
+              <div class="form-group text-danger">
+                <label>Količina: </label>
+                <input
+                  v-model="sastojci[index].kolicina"
+                  :name="`sastojci[${index}][kolicina]`"
+                  type="text"
+                  class="form-control"
+                  placeholder="Kolicina"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <button
+                @click="addSastojak"
+                type="button"
+                class="btn btn-secondary"
+              >
+                Novi Sastojak
+              </button>
+            </div>
+            <div class="form-group">
+              <label>Priprema:</label>
+              <textarea
+                v-model="priprema"
+                type="textarea"
+                class="form-control"
+                placeholder="Priprema"
+              />
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary ml-2">
+                Dodaj Recept
+              </button>
+            </div>
+          </form>
         </div>
-        <div
-          class="form-group"
-          v-for="(sastojak, index) in sastojci"
-          :key="index"
-        >
-          <div class="form-group">
-            <label>Sastojak</label>
-            <input
-              v-model="sastojci[index].sastojak"
-              :name="`sastojci[${index}][sastojak]`"
-              type="text"
-              class="form-control"
-              placeholder="Sastojak"
-            />
-          </div>
-          <div class="form-group">
-            <label>Kolicina</label>
-            <input
-              v-model="sastojci[index].kolicina"
-              :name="`sastojci[${index}][kolicina]`"
-              type="text"
-              class="form-control"
-              placeholder="Kolicina"
-            />
-          </div>
-        </div>
-        <div class="form-group">
-          <button @click="addSastojak" type="button" class="btn btn-secondary">
-            Novi Sastojak
-          </button>
-        </div>
-        <div class="form-group">
-          <label>Priprema:</label>
-          <textarea
-            v-model="priprema"
-            type="textarea"
-            class="form-control"
-            placeholder="Priprema"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary ml-2">Dodaj Recept</button>
-      </form>
+      </div>
     </div>
   </div>
 </template>
