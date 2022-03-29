@@ -10,7 +10,7 @@
           <li v-if="!store.currentUser" class="nav-item">
             <router-link to="/login" class="nav-link">Login</router-link>
           </li>
-          <li v-if="!store.currentUser" class="nav-item">
+          
             <router-link to="/register" class="nav-link">Sign up</router-link>
           </li>
           <li v-if="store.currentUser" class="nav-item">
